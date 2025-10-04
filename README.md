@@ -59,7 +59,7 @@ If you’re not sure which version to use, check PyTorch’s official installati
 If no GPU is available, the CPU version of PyTorch (installed by default) will be used automatically — it will simply run slower.
 
 # Input Data
-Before running the application, **make sure you place the Athora product PDF documents inside the `/data` folder**.
+Before running the application, **make sure you create a `/data` folder in the project root and place the Athora product PDF documents inside it**.
 
 If you want to store them elsewhere, update the `pdf_folder_path` variable in your `.env` file accordingly.
 
