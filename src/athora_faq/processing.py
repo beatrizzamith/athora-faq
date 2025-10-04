@@ -7,6 +7,7 @@ from langchain.text_splitter import SpacyTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.docstore.document import Document
 
+logger = logging.getLogger(__name__)
 
 CHUNK_SIZE = 300
 CHUNK_OVERLAP = 60
@@ -27,7 +28,7 @@ def extract_text(pdf_path: Path) -> str:
         docs = loader.load()
         return "\n\n".join(doc.page_content for doc in docs)
     except Exception as e:
-        logging.error(f"Failed to extract {pdf_path.name}: {e}")
+        logger.error(f"Failed to extract {pdf_path.name}: {e}")
         return ""
 
 
@@ -61,7 +62,7 @@ def chunk_documents(pdf_folder: Path) -> list[Document]:
     chunks = []
 
     for pdf_file in pdf_folder.glob("*.pdf"):
-        logging.info(f"Processing {pdf_file.name}")
+        logger.info(f"Processing {pdf_file.name}")
         text = extract_text(pdf_file)
         if not text:
             continue

@@ -2,16 +2,12 @@ import logging
 
 from pathlib import Path
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain.docstore.document import Document
 
 EMBEDDINGS_MODEL = "intfloat/multilingual-e5-base"
 
-# Logging setup
-logging.basicConfig(
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    level=logging.INFO,
-)
+logger = logging.getLogger(__name__)
 
 
 def build_faiss_index(docs: list[Document], embeddings_model: str, index_path: Path) -> FAISS:
@@ -26,11 +22,11 @@ def build_faiss_index(docs: list[Document], embeddings_model: str, index_path: P
     Returns:
         FAISS: The built FAISS index.
     """
-    logging.info("Building FAISS index...")
+    logger.info("Building FAISS index...")
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model)
     index = FAISS.from_documents(docs, embeddings)
     index.save_local(index_path)
-    logging.info(f"FAISS index saved to {index_path}")
+    logger.info(f"FAISS index saved to {index_path}")
 
     return index
 
@@ -60,7 +56,7 @@ def load_faiss_index(index_path: Path) -> FAISS:
     if not index_path.exists():
         raise FileNotFoundError(f"FAISS index not found at {index_path}")
 
-    logging.info(f"Loading FAISS index from {index_path}")
+    logger.info(f"Loading FAISS index from {index_path}")
     embeddings = HuggingFaceEmbeddings(model_name=EMBEDDINGS_MODEL)
     faiss_index = FAISS.load_local(index_path, embeddings, allow_dangerous_deserialization=True)
     return faiss_index

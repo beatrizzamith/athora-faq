@@ -5,6 +5,8 @@ from typing import Tuple
 from transformers import pipeline
 from langchain.docstore.document import Document
 
+logger = logging.getLogger(__name__)
+
 MAX_TOKENS = 512
 
 SYSTEM_PROMPT = """
@@ -40,14 +42,14 @@ def init_pipeline(model_name: str, token: str):
       A text generation pipeline.
    """
    device = "cuda" if torch.cuda.is_available() else "cpu"
-   logging.info(f"Using device: {device}")
+   logger.info(f"Using device: {device}")
 
    return pipeline(
         "text-generation",
         model=model_name,
         token=token,
         dtype=torch.bfloat16,
-        device_map="auto" if device == "cuda" else None,  # <- Fix here
+        device_map="auto" if device == "cuda" else None,  
    )
 
 
@@ -72,7 +74,7 @@ def generate_answer(
         {"role": "user", "content": user_prompt},
    ]
 
-   logging.info("Generating answer...")
+   logger.info("Generating answer...")
    output = pipe(messages, max_new_tokens=MAX_TOKENS)
    answer = output[0]["generated_text"][-1]["content"]
 
