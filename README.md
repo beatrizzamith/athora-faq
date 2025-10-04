@@ -48,7 +48,7 @@ Then install the matching GPU-enabled PyTorch build — **replace cuXXX with you
 
 Example: For CUDA 12.4
 ```
-pip install torch --index-url https://download.pytorch.org/whl/cu124
+pip install --force-reinstall torch --index-url https://download.pytorch.org/whl/cu124
 ``` 
 Note: If your system shows CUDA 13.0 or higher, simply install the CUDA 12.4 (cu124) build.
 PyTorch is backward compatible with newer driver versions.

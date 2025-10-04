@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm", "wheel"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,10 +16,12 @@ dependencies = [
     "faiss-cpu>=1.7",
     "transformers>=4.40",
     "torch>=2.2",
-    "sentence-transformers>=2.2",
     "streamlit>=1.38",
     "spacy>=3.7",
+    "sentence-transformers>=2.2",
     "python-dotenv>=1.0",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.4",
     "pypdf>=4.0"
 ]
 
