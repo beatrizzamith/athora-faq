@@ -6,8 +6,8 @@ An AI-powered FAQ assistant that answers questions about Athora’s pension prod
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/yourusername/athora-faq-assistant.git
-cd athora-faq-assistant
+git clone https://github.com/beatrizzamith/athora-faq.git
+cd athora-faq
 ```
 
 ### 2. Create and activate a Conda environment
