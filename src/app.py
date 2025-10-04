@@ -58,7 +58,11 @@ def get_pipeline():
 index = get_index()
 pipe = get_pipeline()
 
-query = st.text_input("💬 Ask a question about Athora products:")
+query = st.text_area(
+    "💬 Ask a question about Athora products:",
+    height=120,  
+    placeholder="Type your question here...",
+)
 
 if query:
     with st.spinner("🔎 Generating answer... please wait..."):

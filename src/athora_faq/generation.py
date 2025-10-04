@@ -19,7 +19,7 @@ Rules:
 4. Do not invent or assume information. If the answer cannot be found, reply exactly: “I’m sorry, I couldn’t find that information in our documents.”
 5. Write in clear, simple, customer-friendly language. Avoid technical jargon.
 
-Task: Answer the following user question using the provided chunks.
+Task: Answer the following user question using the provided chunks and cite them.
 """
 
 
